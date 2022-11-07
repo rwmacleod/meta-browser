@@ -23,6 +23,7 @@ GN_ARGS += "\
         use_system_minigbm=true \
         use_system_libdrm=true \
         use_gtk=false \
+        use_qt=false \
 "
 
 # The chromium binary must always be started with those arguments.

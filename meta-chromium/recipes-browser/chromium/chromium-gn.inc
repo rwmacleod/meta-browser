@@ -16,15 +16,12 @@ SRC_URI += " \
     file://0003-v8-qemu-wrapper.patch \
     file://0004-wrapper-extra-flags.patch \
     file://0005-BUILD-do-not-specify-march-on-arm.patch \
-    file://0007-Delete-compiler-options-not-available-in-release-ver.patch \
     file://0008-avoid-link-latomic-failure-on-CentOS-8-host.patch \
     file://0009-nomerge-attribute-on-declaration-is-only-available-s.patch \
     file://0011-Revert-Use-ffile-compilation-dir-instead-of-fdebug-c.patch \
-    file://0012-Build-X11-parts-only-for-ozone_platform_x11.patch \
     file://0013-Fix-html_minifier-script-for-node-v12.patch \
-    file://0014-grit-util-py-remove-deprecated-mode-for-open.patch \
-    file://0015-Avoid-inadvertently-adding-a-wayland-dependency.patch \
 "
+#    file://0007-Delete-compiler-options-not-available-in-release-ver.patch 
 
 SRC_URI:append:libc-musl = "\
     file://musl/0001-mallinfo-implementation-is-glibc-specific.patch \
@@ -152,6 +149,10 @@ GN_ARGS = " \
 # often isn't compatible, e.g. freetype-2.11 isn't compatible with
 # chromium-94
 GN_ARGS += "use_system_freetype=false"
+
+# Qt support appears to be underdevelopment in Nov 2022 so disable now
+# but a PACKAGECONFIG option should be added when the feature is ready.
+GN_ARGS += "use_qt=false"
 
 # Closure_compile needs to be disabled to avoid pulling in java dependencies,
 # which are typicaly not wanted. It started to happen after https://crrev.com/c/1278470
