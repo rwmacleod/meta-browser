@@ -1,8 +1,6 @@
 OpenEmbedded/Yocto BSP layer for Chromium Browsers
 ==================================================
 
-Chromium is made of CVEs! LoL.
-
 This layer provides web browser recipes for use with OpenEmbedded
 and/or Yocto.
 
