@@ -1,26 +1,18 @@
+From fccc7baac8739ca3e516ea83780809ecb989b643 Mon Sep 17 00:00:00 2001
+From: Maksim Sisov <msisov@igalia.com>
+Date: Mon, 5 Sep 2022 08:17:28 +0300
+Subject: [PATCH] chromium: update to 105.0.5195.102
+
 Upstream-Status: Pending
 
 Signed-off-by: Maksim Sisov <msisov@igalia.com>
----
-From c4117f44004faac54f94641a02afcc22199b79e4 Mon Sep 17 00:00:00 2001
-From: Maksim Sisov <msisov@igalia.com>
-Date: Mon, 12 Sep 2022 09:10:28 +0300
-Subject: [PATCH] Fix html_minifier script for node v12.
 
-fs/promises is not part of node v12 that dunfell uses according to
-https://nodejs.org/api/fs.html#promises-api.
-
-https://stackoverflow.com/questions/70041947/import-filehandle-across-node-js-versions/70042193#70042193
-suggests "const fileHandle = require("fs").promises;"
-
-That fixes the problem with nodejs on dunfell, which uses older
-version of nodejs than other branches.
 ---
  tools/polymer/html_minifier.js | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/tools/polymer/html_minifier.js b/tools/polymer/html_minifier.js
-index d61340a8d99c8..77b0c409b3d2f 100644
+index e86ef11a66..d2f9b1352d 100644
 --- a/tools/polymer/html_minifier.js
 +++ b/tools/polymer/html_minifier.js
 @@ -14,7 +14,7 @@ const minify =
@@ -32,6 +24,3 @@ index d61340a8d99c8..77b0c409b3d2f 100644
  
  // Regex to extract the CSS contents out of the HTML string. It matches anything
  // that is wrapped by a '<style>...</style>' pair.
--- 
-2.34.1
-
