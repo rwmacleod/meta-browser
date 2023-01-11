@@ -1,0 +1,64 @@
+From a065ee987d067d37559c3d4a96b359c87e68e502 Mon Sep 17 00:00:00 2001
+From: Randy MacLeod <Randy.MacLeod@windriver.com>
+Date: Tue, 10 Jan 2023 18:36:38 -0500
+Subject: [PATCH] Revert "[ios] Fix breakpoint in Swift files"
+
+This reverts commit 765a3d2a795431f4d5d06d0f39b3512dac4a81d5.
+
+OE doesn't care about swift so revert this patch
+---
+ build/config/compiler/BUILD.gn |  2 --
+ build/toolchain/ios/swiftc.py  | 10 ----------
+ 2 files changed, 12 deletions(-)
+
+diff --git a/build/config/compiler/BUILD.gn b/build/config/compiler/BUILD.gn
+index 531b326c498d0..ce7de4c2b792c 100644
+--- a/build/config/compiler/BUILD.gn
++++ b/build/config/compiler/BUILD.gn
+@@ -1248,7 +1248,6 @@ config("compiler_codegen") {
+ config("compiler_deterministic") {
+   cflags = []
+   ldflags = []
+-  swiftflags = []
+ 
+   # Eliminate build metadata (__DATE__, __TIME__ and __TIMESTAMP__) for
+   # deterministic build.  See https://crbug.com/314403
+@@ -1289,7 +1288,6 @@ config("compiler_deterministic") {
+       # -ffile-compilation-dir is an alias for both -fdebug-compilation-dir=
+       # and -fcoverage-compilation-dir=.
+       cflags += [ "-ffile-compilation-dir=." ]
+-      swiftflags += [ "-file-compilation-dir=." ]
+     }
+     if (!is_win) {
+       # We don't use clang -cc1as on Windows (yet? https://crbug.com/762167)
+diff --git a/build/toolchain/ios/swiftc.py b/build/toolchain/ios/swiftc.py
+index 8c7779f8e83b2..8f7b7e595ff2a 100644
+--- a/build/toolchain/ios/swiftc.py
++++ b/build/toolchain/ios/swiftc.py
+@@ -101,12 +101,6 @@ def compile_module(module, sources, settings, extras, tmpdir):
+     output_file_map_file.flush()
+ 
+   extra_args = []
+-  if settings.file_compilation_dir:
+-    extra_args.extend([
+-        '-file-compilation-dir',
+-        settings.file_compilation_dir,
+-    ])
+-
+   if settings.bridge_header:
+     extra_args.extend([
+         '-import-objc-header',
+@@ -305,10 +299,6 @@ def main(args):
+                       action='store',
+                       dest='swift_toolchain_path',
+                       help='path to the root of the Swift toolchain')
+-  parser.add_argument('-file-compilation-dir',
+-                      default='',
+-                      action='store',
+-                      help='compilation directory to embed in the debug info')
+   parser.add_argument('-enable-cxx-interop',
+                       dest='enable_cxx_interop',
+                       action='store_true',
+-- 
+2.34.1
+

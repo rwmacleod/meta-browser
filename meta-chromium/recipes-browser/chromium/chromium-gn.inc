@@ -16,12 +16,13 @@ SRC_URI += " \
     file://0003-v8-qemu-wrapper.patch \
     file://0004-wrapper-extra-flags.patch \
     file://0005-BUILD-do-not-specify-march-on-arm.patch \
+    file://0007-Delete-compiler-options-not-available-in-release-ver.patch \
     file://0008-avoid-link-latomic-failure-on-CentOS-8-host.patch \
     file://0009-nomerge-attribute-on-declaration-is-only-available-s.patch \
+    file://0010-Revert-ios-Fix-breakpoint-in-Swift-files.patch \
+    file://0011-Revert-Use-ffile-compilation-dir-instead-of-fdebug-c.patch \
     file://0013-Fix-html_minifier-script-for-node-v12.patch \
 "
-#    file://0007-Delete-compiler-options-not-available-in-release-ver.patch 
-#    file://0011-Revert-Use-ffile-compilation-dir-instead-of-fdebug-c.patch 
 
 SRC_URI:append:libc-musl = "\
     file://musl/0001-mallinfo-implementation-is-glibc-specific.patch \
