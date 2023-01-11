@@ -1,4 +1,4 @@
-From 38ca1d7a897d931bf57fa0a06ec9b913d796a1d7 Mon Sep 17 00:00:00 2001
+From a614a7ce6273a61697b5459c65c490c274affe72 Mon Sep 17 00:00:00 2001
 From: Hongxu Jia <hongxu.jia@windriver.com>
 Date: Fri, 22 Jan 2021 00:02:25 +0800
 Subject: [PATCH] avoid link latomic failure on CentOS 8 host

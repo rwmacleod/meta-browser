@@ -1,4 +1,4 @@
-From 6f05bbd6bdfa36e540280c24cdf2895e21cec63b Mon Sep 17 00:00:00 2001
+From a537c06eacc5b8cc104cb93377ee6dd3bada9d41 Mon Sep 17 00:00:00 2001
 From: Raphael Kubo da Costa <raphael.kubo.da.costa@intel.com>
 Date: Wed, 8 Nov 2017 16:43:47 +0100
 Subject: [PATCH] wrapper: extra flags

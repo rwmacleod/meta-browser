@@ -1,4 +1,4 @@
-From e623944a73d935dd6fb57f7fbc444c668e38af85 Mon Sep 17 00:00:00 2001
+From f32c33f791d598963cbde61a33fabc618fca0b35 Mon Sep 17 00:00:00 2001
 From: Khem Raj <raj.khem@gmail.com>
 Date: Tue, 22 Jan 2019 00:17:41 -0800
 Subject: [PATCH] BUILD: do not specify march on arm

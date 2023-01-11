@@ -1,4 +1,4 @@
-From 14afb54cfd88ca93e6b531dfd519cd15cd801f9e Mon Sep 17 00:00:00 2001
+From 6ff57e4a434aad977d54f6523d7483c6d1a3f3b5 Mon Sep 17 00:00:00 2001
 From: Khem Raj <raj.khem@gmail.com>
 Date: Mon, 29 Apr 2019 12:00:19 +0300
 Subject: [PATCH] Remove the GN settings done for clang that conflict with OE

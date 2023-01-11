@@ -1,4 +1,4 @@
-From a159b86422be076d0558bded2bed783670fe24cb Mon Sep 17 00:00:00 2001
+From 933dd5019c735059e7a5c208dc12491e9c4e7c47 Mon Sep 17 00:00:00 2001
 From: Khem Raj <raj.khem@gmail.com>
 Date: Wed, 4 Dec 2019 19:06:54 -0800
 Subject: [PATCH] Delete compiler options not available in release versions of
@@ -13,10 +13,10 @@ Signed-off-by: Randy MacLeod <Randy.MacLeod@windriver.com>
  1 file changed, 5 insertions(+)
 
 diff --git a/build/config/compiler/BUILD.gn b/build/config/compiler/BUILD.gn
-index ce7de4c2b792c..07a8049d4242a 100644
+index 78c560b6ec..ce482c860c 100644
 --- a/build/config/compiler/BUILD.gn
 +++ b/build/config/compiler/BUILD.gn
-@@ -1563,6 +1563,11 @@ config("default_warnings") {
+@@ -1518,6 +1518,11 @@ config("default_warnings") {
        cflags += [
          "-Wenum-compare-conditional",
  
@@ -28,6 +28,3 @@ index ce7de4c2b792c..07a8049d4242a 100644
          # Ignore warnings about MSVC optimization pragmas.
          # TODO(thakis): Only for no_chromium_code? http://crbug.com/912662
          "-Wno-ignored-pragma-optimize",
--- 
-2.34.1
-

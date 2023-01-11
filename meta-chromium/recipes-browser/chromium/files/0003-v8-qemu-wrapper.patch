@@ -1,4 +1,4 @@
-From 56bbaff389a60a6c1d7dc31cb40831e5b8b7f2d9 Mon Sep 17 00:00:00 2001
+From 0677f33f03e4bf3992c2bcca2cf95ae7f10dc92f Mon Sep 17 00:00:00 2001
 From: Raphael Kubo da Costa <raphael.kubo.da.costa@intel.com>
 Date: Tue, 7 Nov 2017 15:24:32 +0100
 Subject: [PATCH] v8: qemu wrapper

@@ -1,4 +1,4 @@
-From a065ee987d067d37559c3d4a96b359c87e68e502 Mon Sep 17 00:00:00 2001
+From 56d0b23f43090e5b07eb06867eed290dad7cbc21 Mon Sep 17 00:00:00 2001
 From: Randy MacLeod <Randy.MacLeod@windriver.com>
 Date: Tue, 10 Jan 2023 18:36:38 -0500
 Subject: [PATCH] Revert "[ios] Fix breakpoint in Swift files"
@@ -6,16 +6,17 @@ Subject: [PATCH] Revert "[ios] Fix breakpoint in Swift files"
 This reverts commit 765a3d2a795431f4d5d06d0f39b3512dac4a81d5.
 
 OE doesn't care about swift so revert this patch
+
 ---
  build/config/compiler/BUILD.gn |  2 --
  build/toolchain/ios/swiftc.py  | 10 ----------
  2 files changed, 12 deletions(-)
 
 diff --git a/build/config/compiler/BUILD.gn b/build/config/compiler/BUILD.gn
-index 531b326c498d0..ce7de4c2b792c 100644
+index ce482c860c..44556ccdea 100644
 --- a/build/config/compiler/BUILD.gn
 +++ b/build/config/compiler/BUILD.gn
-@@ -1248,7 +1248,6 @@ config("compiler_codegen") {
+@@ -1218,7 +1218,6 @@ config("compiler_codegen") {
  config("compiler_deterministic") {
    cflags = []
    ldflags = []
@@ -23,7 +24,7 @@ index 531b326c498d0..ce7de4c2b792c 100644
  
    # Eliminate build metadata (__DATE__, __TIME__ and __TIMESTAMP__) for
    # deterministic build.  See https://crbug.com/314403
-@@ -1289,7 +1288,6 @@ config("compiler_deterministic") {
+@@ -1259,7 +1258,6 @@ config("compiler_deterministic") {
        # -ffile-compilation-dir is an alias for both -fdebug-compilation-dir=
        # and -fcoverage-compilation-dir=.
        cflags += [ "-ffile-compilation-dir=." ]
@@ -32,7 +33,7 @@ index 531b326c498d0..ce7de4c2b792c 100644
      if (!is_win) {
        # We don't use clang -cc1as on Windows (yet? https://crbug.com/762167)
 diff --git a/build/toolchain/ios/swiftc.py b/build/toolchain/ios/swiftc.py
-index 8c7779f8e83b2..8f7b7e595ff2a 100644
+index 8c7779f8e8..8f7b7e595f 100644
 --- a/build/toolchain/ios/swiftc.py
 +++ b/build/toolchain/ios/swiftc.py
 @@ -101,12 +101,6 @@ def compile_module(module, sources, settings, extras, tmpdir):
@@ -59,6 +60,3 @@ index 8c7779f8e83b2..8f7b7e595ff2a 100644
    parser.add_argument('-enable-cxx-interop',
                        dest='enable_cxx_interop',
                        action='store_true',
--- 
-2.34.1
-
