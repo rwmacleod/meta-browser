@@ -1,0 +1,68 @@
+From 12a18e8d0e5c72b686be08e9474298c2ac77a1b6 Mon Sep 17 00:00:00 2001
+From: Elly Fong-Jones <ellyjones@chromium.org>
+Date: Wed, 2 Nov 2022 15:29:48 +0000
+Subject: [PATCH] base: include sys/types.h in symbolize.h
+
+It is needed for ssize_t. In glibc specifically, ssize_t happens to get
+transitively included by some other header - I'm not sure exactly what -
+but POSIX says ssize_t is in sys/types.h and in other libcs the included
+is needed for the type.
+
+Bug: 1380656
+Change-Id: Ibeef8c80f44595b6056fc1be8a104ab7428aa8bb
+Reviewed-on: https://chromium-review.googlesource.com/c/chromium/src/+/3997878
+Reviewed-by: Daniel Cheng <dcheng@chromium.org>
+Commit-Queue: Elly Fong-Jones <ellyjones@chromium.org>
+Cr-Commit-Position: refs/heads/main@{#1066486}
+---
+ base/third_party/symbolize/README.chromium          |  2 ++
+ .../symbolize/patches/008-sys-types-h.patch         | 13 +++++++++++++
+ base/third_party/symbolize/symbolize.h              |  2 ++
+ 3 files changed, 17 insertions(+)
+ create mode 100644 base/third_party/symbolize/patches/008-sys-types-h.patch
+
+diff --git a/base/third_party/symbolize/README.chromium b/base/third_party/symbolize/README.chromium
+index 82aa3a8cf8e24..371bcaa5d90d1 100644
+--- a/base/third_party/symbolize/README.chromium
++++ b/base/third_party/symbolize/README.chromium
+@@ -29,3 +29,5 @@ Local modifications:
+ - 006-use-sandbox-hook-for-open-object-file.patch: use the sandbox hook for
+   the exposed helper for opening object files. This patch should be upstreamed.
+ - 007-clang-format.patch: apply clang-format to make PRESUBMIT.py happy.
++- 008-sys-types-h.patch: include <sys/types.h> to get ssize_t on non-glibc
++  platforms
+diff --git a/base/third_party/symbolize/patches/008-sys-types-h.patch b/base/third_party/symbolize/patches/008-sys-types-h.patch
+new file mode 100644
+index 0000000000000..cc47bd445acea
+--- /dev/null
++++ b/base/third_party/symbolize/patches/008-sys-types-h.patch
+@@ -0,0 +1,13 @@
++diff --git a/base/third_party/symbolize/symbolize.h b/base/third_party/symbolize/symbolize.h
++index 2a55c688aedfb..987569fdde67f 100644
++--- a/base/third_party/symbolize/symbolize.h
+++++ b/base/third_party/symbolize/symbolize.h
++@@ -54,6 +54,8 @@
++ #ifndef BASE_SYMBOLIZE_H_
++ #define BASE_SYMBOLIZE_H_
++ 
+++#include <sys/types.h>  // for ssize_t
+++
++ #include "utilities.h"
++ #include "config.h"
++ #include "glog/logging.h"
+diff --git a/base/third_party/symbolize/symbolize.h b/base/third_party/symbolize/symbolize.h
+index 2a55c688aedfb..987569fdde67f 100644
+--- a/base/third_party/symbolize/symbolize.h
++++ b/base/third_party/symbolize/symbolize.h
+@@ -54,6 +54,8 @@
+ #ifndef BASE_SYMBOLIZE_H_
+ #define BASE_SYMBOLIZE_H_
+ 
++#include <sys/types.h>  // for ssize_t
++
+ #include "utilities.h"
+ #include "config.h"
+ #include "glog/logging.h"
+-- 
+2.34.1
+
