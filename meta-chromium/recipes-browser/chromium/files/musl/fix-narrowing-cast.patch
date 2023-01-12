@@ -1,4 +1,7 @@
-Fix additional compiler warnings
+From 54eec308941dfe10abfaf95a7fc7545330768564 Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 21 Sep 2021 13:12:09 -0700
+Subject: [PATCH] Fix additional compiler warnings
 
 Fixes
 ../../base/files/file_util_linux.cc:33:10: error: case value evaluates to -1859950530, which cannot be narrowed to type 'unsigned long' [-Wc++11-narrowing]                                                         case static_cast<int>(BTRFS_SUPER_MAGIC):
@@ -12,9 +15,11 @@ Signed-off-by: Khem Raj <raj.khem@gmail.com>
  base/system/sys_info_posix.cc | 4 ++--
  2 files changed, 6 insertions(+), 6 deletions(-)
 
+diff --git a/base/files/file_util_linux.cc b/base/files/file_util_linux.cc
+index 66da9b8fd3..1448a182a1 100644
 --- a/base/files/file_util_linux.cc
 +++ b/base/files/file_util_linux.cc
-@@ -30,7 +30,7 @@ bool GetFileSystemType(const FilePath& p
+@@ -30,7 +30,7 @@ bool GetFileSystemType(const FilePath& path, FileSystemType* type) {
      case EXT2_SUPER_MAGIC:  // Also ext3 and ext4
      case MSDOS_SUPER_MAGIC:
      case REISERFS_SUPER_MAGIC:
@@ -23,7 +28,7 @@ Signed-off-by: Khem Raj <raj.khem@gmail.com>
      case 0x5346544E:  // NTFS
      case 0x58465342:  // XFS
      case 0x3153464A:  // JFS
-@@ -40,14 +40,14 @@ bool GetFileSystemType(const FilePath& p
+@@ -40,14 +40,14 @@ bool GetFileSystemType(const FilePath& path, FileSystemType* type) {
        *type = FILE_SYSTEM_NFS;
        break;
      case SMB_SUPER_MAGIC:
@@ -41,9 +46,11 @@ Signed-off-by: Khem Raj <raj.khem@gmail.com>
      case TMPFS_MAGIC:
        *type = FILE_SYSTEM_MEMORY;
        break;
+diff --git a/base/system/sys_info_posix.cc b/base/system/sys_info_posix.cc
+index 6e407535ea..4bdcb25476 100644
 --- a/base/system/sys_info_posix.cc
 +++ b/base/system/sys_info_posix.cc
-@@ -102,8 +102,8 @@ bool IsStatsZeroIfUnlimited(const base::
+@@ -69,8 +69,8 @@ bool IsStatsZeroIfUnlimited(const base::FilePath& path) {
  
    switch (stats.f_type) {
      case TMPFS_MAGIC:

@@ -1,4 +1,4 @@
-From 2194bcc7c0a2ede285d7fde98d6fee2d31819bac Mon Sep 17 00:00:00 2001
+From 92f1d06b8ea908b3bd8e99539d51a1d8471ab5f6 Mon Sep 17 00:00:00 2001
 From: Khem Raj <raj.khem@gmail.com>
 Date: Wed, 13 Feb 2019 09:51:14 -0800
 Subject: [PATCH] gnu_libc_version API is glibc specific
@@ -7,13 +7,16 @@ Do not assume it to be linux wide
 
 Upstream-Status: Pending
 Signed-off-by: Khem Raj <raj.khem@gmail.com>
+
 ---
  .../chrome_browser_main_extra_parts_metrics.cc       | 12 ++++++------
  1 file changed, 6 insertions(+), 6 deletions(-)
 
+diff --git a/chrome/browser/metrics/chrome_browser_main_extra_parts_metrics.cc b/chrome/browser/metrics/chrome_browser_main_extra_parts_metrics.cc
+index 16e7827cba..eadb90f5ff 100644
 --- a/chrome/browser/metrics/chrome_browser_main_extra_parts_metrics.cc
 +++ b/chrome/browser/metrics/chrome_browser_main_extra_parts_metrics.cc
-@@ -58,14 +58,14 @@
+@@ -61,14 +61,14 @@
  
  // TODO(crbug.com/1052397): Revisit the macro expression once build flag switch
  // of lacros-chrome is complete.
@@ -30,7 +33,7 @@ Signed-off-by: Khem Raj <raj.khem@gmail.com>
  
  #if defined(USE_OZONE)
  #include "ui/events/devices/device_data_manager.h"
-@@ -191,7 +191,7 @@ void RecordMicroArchitectureStats() {
+@@ -195,7 +195,7 @@ void RecordMicroArchitectureStats() {
  
  // TODO(crbug.com/1052397): Revisit the macro expression once build flag switch
  // of lacros-chrome is complete.
@@ -39,7 +42,7 @@ Signed-off-by: Khem Raj <raj.khem@gmail.com>
  void RecordLinuxDistroSpecific(const std::string& version_string,
                                 size_t parts,
                                 const char* histogram_name) {
-@@ -269,12 +269,12 @@ void RecordLinuxDistro() {
+@@ -273,12 +273,12 @@ void RecordLinuxDistro() {
  
    base::UmaHistogramSparse("Linux.Distro2", distro_result);
  }
@@ -54,7 +57,7 @@ Signed-off-by: Khem Raj <raj.khem@gmail.com>
    base::Version version(gnu_get_libc_version());
  
    UMALinuxGlibcVersion glibc_version_result = UMA_LINUX_GLIBC_NOT_PARSEABLE;
-@@ -611,7 +611,7 @@ void ChromeBrowserMainExtraPartsMetrics:
+@@ -589,7 +589,7 @@ void ChromeBrowserMainExtraPartsMetrics::PostBrowserStart() {
        base::TaskShutdownBehavior::SKIP_ON_SHUTDOWN};
  // TODO(crbug.com/1052397): Revisit the macro expression once build flag switch
  // of lacros-chrome is complete.

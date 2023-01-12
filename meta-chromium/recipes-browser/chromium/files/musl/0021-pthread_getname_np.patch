@@ -1,4 +1,4 @@
-From 928cc268cdb80a56c8b0163a304cd1314fa10dde Mon Sep 17 00:00:00 2001
+From d94d6980313c30b1d707282d7e6da21f6746e860 Mon Sep 17 00:00:00 2001
 From: Khem Raj <raj.khem@gmail.com>
 Date: Sun, 27 Jun 2021 13:19:47 -0700
 Subject: [PATCH] Musl does not provide pthread_getname_np

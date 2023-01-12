@@ -1,4 +1,4 @@
-From 3a9af2d8e1ed2ffb7bba91bd218cc9b7932ecb3b Mon Sep 17 00:00:00 2001
+From 60ecee126056ca0fa6338b745432551a6b679e1d Mon Sep 17 00:00:00 2001
 From: Khem Raj <raj.khem@gmail.com>
 Date: Wed, 13 Feb 2019 09:51:14 -0800
 Subject: [PATCH] breakpad: Fix build with musl
@@ -9,6 +9,7 @@ Subject: [PATCH] breakpad: Fix build with musl
 
 Upstream-Status: Pending
 Signed-off-by: Khem Raj <raj.khem@gmail.com>
+
 ---
  .../breakpad/src/client/linux/handler/exception_handler.cc  | 6 +++++-
  .../breakpad/breakpad/src/common/linux/elf_core_dump.h      | 1 +
